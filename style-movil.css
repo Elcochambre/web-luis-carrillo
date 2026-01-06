@@ -1,0 +1,156 @@
+/* ==========================================================================
+   ESTILO MÓVIL RESTRICTO - Pepino Cochambre
+   ========================================================================== */
+
+/* 1. RESET TOTAL PARA EVITAR HERENCIAS DE PC */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw !important;
+    overflow-x: hidden !important;
+    background-color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+}
+
+/* 2. CABECERA: BANNER 100% SIN MÁRGENES */
+#header {
+    width: 100vw !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: #fff;
+    position: relative;
+    left: 0 !important;
+}
+
+.logo, .nav-centrado {
+    width: 100% !important;
+}
+
+.logo img {
+    width: 100% !important; /* Marca de borde a borde */
+    max-width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    border-radius: 0 !important;
+}
+
+/* 3. MENÚ HAMBURGUESA: FORZAR APARICIÓN */
+.menu-hamburguesa {
+    display: flex !important; /* Sale sí o sí */
+    position: absolute !important;
+    top: 15px;
+    right: 15px;
+    z-index: 100050 !important;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.barra {
+    width: 25px;
+    height: 3px;
+    background-color: #333 !important;
+}
+
+/* 4. NAVEGACIÓN: OCULTAR EL LISTADO FEO */
+.nav-links {
+    display: none !important; /* Oculto hasta que se pulse */
+    flex-direction: column !important;
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    width: 100% !important;
+    background: #ffffff !important;
+    padding: 20px 0 !important;
+    z-index: 100040 !important;
+    box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+    list-style: none !important;
+}
+
+.nav-links.active {
+    display: flex !important; /* Se activa por JS */
+}
+
+.nav-links li {
+    text-align: center;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+/* 5. DISEÑO DE SECCIONES (Tus cuadros Pantone) */
+.seccion-cloud-dancer {
+    width: 95% !important;
+    margin: 15px auto !important;
+    padding: 20px !important;
+    background-color: #f6f5f4;
+    border-radius: 12px;
+}
+
+.bloque-pantone {
+    width: 100% !important;
+    padding: 15px !important;
+    font-size: 1.5em !important;
+    text-align: center;
+    color: #fff !important;
+}
+
+/* TUS COLORES PANTONE ORIGINALES */
+.bloque-pantone-formacion { background-color: #009473 !important; }
+.bloque-pantone-experiencia { background-color: #FF7F50 !important; }
+.bloque-pantone-habilidades { background-color: #6667AB !important; }
+
+/* 6. HABILIDADES (1 SOLA COLUMNA) */
+.habilidades-lista {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px;
+}
+
+.columna-habilidad h3 {
+    border-bottom: 2px solid #6667AB;
+    color: #6667AB;
+}
+
+/* 7. CONTROLES: FIJOS ABAJO A LA DERECHA */
+.controles-interactivos {
+    position: fixed !important;
+    bottom: 25px !important;
+    right: 20px !important;
+    top: auto !important; /* MATA LA POSICIÓN DE PC */
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 15px;
+    z-index: 100060 !important;
+}
+
+#btn-cv { display: none !important; } /* Limpiamos la pantalla */
+
+#toggle-bn, #btn-subir {
+    width: 50px !important;
+    height: 50px !important;
+    border-radius: 50%;
+    border: 2px solid #000;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#btn-subir {
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+}
+
+#btn-subir.mostrar {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
