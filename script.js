@@ -248,3 +248,25 @@ document.addEventListener('keydown', function(e) {
         return false;
     }
 });
+
+// --- LÓGICA DEL ACORDEÓN DE FORMACIÓN ---
+const acordeones = document.querySelectorAll('.acordeon-header');
+
+acordeones.forEach(acordeon => {
+    acordeon.addEventListener('click', () => {
+        
+        // 1. Alternar la clase 'activo' para girar la flecha
+        acordeon.classList.toggle('activo');
+        
+        // 2. Controlar la altura del contenido (abrir/cerrar)
+        const contenido = acordeon.nextElementSibling;
+        
+        if (acordeon.classList.contains('activo')) {
+            // Si abrimos, calculamos la altura real del contenido
+            contenido.style.maxHeight = contenido.scrollHeight + "px";
+        } else {
+            // Si cerramos, altura a 0
+            contenido.style.maxHeight = 0;
+        }
+    });
+});

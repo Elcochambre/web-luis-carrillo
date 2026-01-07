@@ -200,7 +200,7 @@ a { text-decoration: none !important; }
 .perfil-imagen img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .perfil-texto { 
     flex: 1; 
-    padding: 20px 25px; /* Reducido para que el bloque sea más pequeño */
+    padding: 20px 35px; /* Reducido para que el bloque sea más pequeño */
     text-align: left; 
     display: flex;
     flex-direction: column;
@@ -334,6 +334,104 @@ body.modo-contraste .btn-cerrar-x {
 
 .footer-bottom { text-align: center; padding: 20px 0 40px; color: #666; font-size: 0.85em; }
 
+
+/* ==========================================================================
+   ESTILOS ACORDEÓN FORMACIÓN (GLOBAL - PARA PC Y MÓVIL)
+   ¡Pegar esto al final del todo del archivo style.css!
+   ========================================================================== */
+
+/* Reseteo agresivo para quitar aspecto de botón */
+.acordeon-header {
+    width: 100%;
+    background: transparent !important; /* Quita el gris de fondo */
+    background-color: transparent !important;
+    border: none !important;            /* Quita el borde de botón */
+    outline: none !important;           /* Quita el borde azul al hacer clic */
+    box-shadow: none !important;        /* Quita sombras raras */
+    text-align: left;
+    padding: 15px 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif; /* Asegura tu tipografía */
+}
+
+/* Contenedor de cada ítem */
+.acordeon-item {
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 10px;
+}
+.acordeon-item:last-child {
+    border-bottom: none;
+}
+
+/* Título dentro del botón */
+.acordeon-header h3 {
+    font-size: 1rem;
+    margin: 0;
+    color: #333;
+    position: relative;
+    padding-left: 20px; /* Espacio para el punto */
+    line-height: 1.4;
+    font-weight: 700;   /* Negrita bonita */
+}
+
+/* EL PUNTO ESMERALDA */
+.acordeon-header h3::before {
+    content: "•";
+    color: #009473; /* Verde Emerald */
+    font-size: 1.5em;
+    position: absolute;
+    left: 0;
+    top: -2px;
+}
+
+/* La flecha giratoria */
+.icono-acordeon {
+    font-size: 0.8rem;
+    color: #009473; /* Verde Emerald */
+    transition: transform 0.3s ease;
+    margin-left: 15px;
+}
+
+/* Estado ACTIVO (Cuando está abierto) */
+.acordeon-header.activo .icono-acordeon {
+    transform: rotate(180deg); /* Gira la flecha */
+}
+.acordeon-header.activo h3 {
+    color: #009473; /* Pone el título verde también al abrir */
+}
+
+/* El contenido oculto (Animación suave) */
+.acordeon-contenido {
+    max-height: 0;           /* ESTO ES LO QUE LO OCULTA */
+    overflow: hidden;        /* ESTO TAMBIÉN ES IMPRESCINDIBLE */
+    transition: max-height 0.3s ease-out;
+    padding-left: 20px; 
+}
+
+.acordeon-contenido p {
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.6;
+}
+.acordeon-contenido .institucion {
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 5px;
+    display: block; /* Asegura que salte de línea */
+}
+
+/* MODO NOCHE (Ajustes para que se vea bien en oscuro) */
+body.modo-contraste .acordeon-header { background: transparent !important; }
+body.modo-contraste .acordeon-header h3 { color: #fff; }
+body.modo-contraste .acordeon-header.activo h3 { color: #009473; }
+body.modo-contraste .acordeon-contenido p { color: #ccc; }
+body.modo-contraste .acordeon-contenido .institucion { color: #fff; }
+body.modo-contraste .acordeon-item { border-bottom: 1px solid #333; }
+
 .prompt-container {
     margin-top: 25px;
     padding: 20px;
@@ -375,6 +473,21 @@ body.modo-contraste .btn-cerrar-x {
     position: absolute;
     left: -15px; /* Posicionamiento de la viñeta */
     top: -5px;   /* Ajuste vertical para centrar con el texto */
+}
+
+/* --- AJUSTE ESPACIADO PROYECTOS WEB --- */
+
+.separador-proyectos {
+    margin-top: 10px !important;    /* Separa de las fotos de arriba */
+    margin-bottom: 20px !important; /* Empuja el título "Proyectos Web" hacia abajo */
+    border: 0;
+    border-top: 2px solid #e0e0e0; /* Una línea gris sutil y elegante */
+    opacity: 0.5;
+}
+
+/* Aseguramos que el título H3 también respire un poco respecto a las tarjetas */
+#proyectos h3 {
+    margin-bottom: 10px !important;
 }
 
 /* ==========================================================================
@@ -875,11 +988,6 @@ body.modo-contraste #menu-movil-btn {
         position: absolute !important;
     }
 
-    /* Subimos la caja de perfil para que pegue con el banner */
-    #perfil.seccion-cloud-dancer {
-        margin-top: 0 !important;
-        padding-top: 15px !important;
-    }
 
     body:not(.modo-contraste) .banner-bn {
         display: none !important;
@@ -896,6 +1004,23 @@ body.modo-contraste #menu-movil-btn {
         gap: 15px !important;
     }
     .tarjeta-proyecto:last-child { grid-column: span 2; }
+
+
+    /* 1. Reducimos el relleno de la caja contenedora del perfil */
+    #perfil.seccion-cloud-dancer {
+        padding: 30px !important; /* Antes tenía 30px, lo igualamos a la barra verde */
+    }
+
+    /* 2. Eliminamos el relleno extra del texto interior */
+    .perfil-texto {
+        padding: 15px 0 !important; /* Quitamos los 35px laterales que sobraban */
+    }
+
+    /* 3. Ajustamos también el contenedor de las barras verdes para que todo coincida */
+    .bloque-pantone {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
 
     /* --- CONTROLES FLOTANTES EN MÓVIL --- */
 
