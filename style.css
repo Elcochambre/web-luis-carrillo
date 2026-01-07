@@ -1,52 +1,17 @@
 /* ==========================================================================
-   ÍNDICE DE SECCIONES - STYLE.CSS
+   ÍNDICE DE SECCIONES - STYLE.CSS (VERSIÓN DEFINITIVA LUIS)
 ==========================================================================
-   1. BASE, RESETEO Y TIPOGRAFÍA ............ Línea 50
-      - Reseteo, fuentes y bloqueo de selección de texto.
-      - Textura de fondo y barra de progreso.
-   
-   2. CABECERA Y NAVEGACIÓN (PC) ............ Línea 105
-      - Estructura del Header y Logo (Aspect Ratio corregido).
-      - Gestión de Banners (Color vs B/N).
-   
-   3. SECCIONES Y BLOQUES GENERALES ......... Línea 142
-      - Contenedores Cloud Dancer y Títulos Pantone.
-      - Layout de Perfil y Habilidades.
-      - Resplandores dinámicos por sección.
-   
-   4. PORTAFOLIO Y GALERÍA .................. Línea 232
-      - Grid de proyectos UX y Galería de miniaturas.
-      - Lightbox (Efecto zoom con CSS puro).
-   
-   5. FOOTER Y PALETA DE COLORES ............ Línea 297
-      - Referencias Pantone y AI Metadata.
-      - Estilo de listas de Experiencia (puntos naranja).
-   
-   6. CONTROLES INTERACTIVOS (FLOTANTES) .... Línea 361
-      - Lógica de apilamiento: Luna sobre CV.
-      - Animación de la flecha (Efecto empuje).
-   
-   7. MODO CONTRASTE (NOCHE) ................ Línea 422
-      - Inversión de colores y resplandores blancos.
-      - Formulario modo noche y ajustes de botones.
-   
-   8. FORMULARIO DE CONTACTO ................ Línea 632
-      - Maquetación de inputs y redes sociales.
-   
-   9. MENÚ HAMBURGUESA (MÓVIL) .............. Línea 719
-      - Popup dinámico para navegación móvil.
-   
-   10. RESPONSIVE Y MEDIA QUERIES ........... Línea 718
-      - Ajustes de dispositivos móviles (<768px).
-      - Limpieza de espacios en Header y Perfil.
-      - Controles flotantes modo móvil ........... Línea 808
-      - Modo Landscape (Horizontal) .............. Línea 879
-      - Colores dinámicos menú móvil ............. Línea 905
-
-      PARCHE FINAL: MODO NOCHE - ENLACES GRISES...Linea 1071
+   1. BASE, RESETEO Y TIPOGRAFÍA
+   2. CABECERA Y NAVEGACIÓN (PC)
+   3. LÓGICA DE BANNERS (SOLUCIÓN DEFINITIVA)
+   4. SECCIONES GENERALES (Cloud Dancer y Pantones)
+   5. COMPONENTES: PERFIL, ACORDEÓN Y HABILIDADES
+   6. PORTAFOLIO Y GALERÍA (LIGHTBOX)
+   7. FORMULARIO Y FOOTER
+   8. CONTROLES INTERACTIVOS (FLOTANTES)
+   9. MODO CONTRASTE (NOCHE)
+   10. RESPONSIVE (MÓVIL < 768px)
 ========================================================================== */
-
-
 
 /* ==========================================================================
    1. BASE, RESETEO Y TIPOGRAFÍA
@@ -67,13 +32,11 @@ body {
     font-family: 'Montserrat', sans-serif; 
     font-size: 15px; 
     line-height: 1.6;
-    -webkit-user-select: none; /* Safari */
-    -ms-user-select: none;     /* IE 10 y Edge */
-    user-select: none;         /* Estándar (Firefox, Chrome, etc.) */
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
-
-/* Opcional: Permite seleccionar texto solo en los campos del formulario */
 input, textarea {
     -webkit-user-select: text;
     -ms-user-select: text;
@@ -94,18 +57,11 @@ a { text-decoration: none !important; }
 
 /* Barra de progreso superior */
 #progress-bar {
-    position: fixed;
-    top: 0; left: 0;
+    position: fixed; top: 0; left: 0;
     width: 0%; height: 4px;
     background-color: #BB2649; 
     z-index: 100002; 
     transition: width 0.1s ease-out;
-}
-
-.seccion-cloud-dancer p, 
-.seccion-cloud-dancer li {
-    font-size: 0.95rem !important;
-    line-height: 1.5;
 }
 
 /* ==========================================================================
@@ -114,7 +70,7 @@ a { text-decoration: none !important; }
 #header {
     background-color: #ffffff;
     padding: 20px 0;
-    border-bottom: none !important; /* Cambiado a none para eliminar la línea */
+    border-bottom: none !important;
     text-align: center;
 }
 
@@ -125,25 +81,35 @@ a { text-decoration: none !important; }
     gap: 15px;
 }
 
+/* Estilo Base de las imágenes del logo */
 .logo img {
-    width: 100% !important;      /* Ocupa lo que necesite el contenedor */
-    max-width: 500px !important; /* Pero que no pase de 500px */
-    height: auto !important;     /* La altura se calcula sola AUTOMÁTICAMENTE */
-    display: block;
-    margin: 0 auto;
-    
-    /* TRUCOS PARA PIXEL ART */
-    object-fit: contain;         /* Asegura que NUNCA se estire ni aplaste */
-    image-rendering: pixelated;  /* Mantiene los píxeles nítidos (crucial para tu logo) */
-    image-rendering: -moz-crisp-edges; /* Soporte para Firefox */
+    width: 100% !important;
+    max-width: 550px !important;
+    height: auto !important;
+    display: block; margin: 0 auto;
+    object-fit: contain;
+    image-rendering: pixelated; 
+    image-rendering: -moz-crisp-edges;
 }
 
-/* 1. Reset de visibilidad (Fuera de cualquier media query) */
-.banner-color { display: block !important; }
-.banner-bn { display: none !important; }
+/* ==========================================================================
+   3. LÓGICA DE BANNERS (SOLUCIÓN DEFINITIVA)
+   ========================================================================== */
+
+/* Regla base: ocultamos el de móvil en escritorio */
+.banner-movil { display: none !important; }
+
+/* En PC Día: Se ve el PC Color */
+.banner-pc.banner-color { display: block !important; }
+/* En PC Día: Se oculta el PC Negro */
+.banner-pc.banner-bn { display: none !important; }
+
+/* En PC Noche */
+body.modo-contraste .banner-pc.banner-color { display: none !important; }
+body.modo-contraste .banner-pc.banner-bn { display: block !important; }
 
 
-
+/* Menú Principal */
 .nav-links {
     list-style: none;
     display: flex;
@@ -159,12 +125,11 @@ a { text-decoration: none !important; }
 
 .nav-links li a:hover { 
     opacity: 1;
-    transition: 0.3s;
     transform: scale(1.05);
 }
 
 /* ==========================================================================
-   3. SECCIONES Y BLOQUES GENERALES
+   4. SECCIONES GENERALES
    ========================================================================== */
 .seccion-cloud-dancer, 
 .seccion-cloud-dancer-footer {
@@ -173,96 +138,122 @@ a { text-decoration: none !important; }
     margin: 0 auto 40px;
     padding: 30px; 
     border-radius: 0 0 12px 12px; 
-    box-shadow: none !important; /* Quitamos la sombra gris general */
     position: relative;
     overflow: hidden;
+    box-shadow: none !important;
 }
 
+.seccion-cloud-dancer p, 
+.seccion-cloud-dancer li {
+    font-size: 0.95rem !important;
+    line-height: 1.5;
+}
+
+/* Bloques Pantone (Títulos) */
 .bloque-pantone {
     width: 100%; padding: 15px; margin-top: 40px;
     color: #ffffff !important; text-align: center; font-size: 2.2em; font-weight: 800;
 }
-
 .bloque-pantone-formacion { background-color: #009473; }
 .bloque-pantone-experiencia { background-color: #FF7F50; color: #000 !important; }
-#proyectos h2 { background-color: #BB2649; color: #ffffff !important; }
 .bloque-pantone-habilidades { background-color: #6667AB; }
 .bloque-pantone-contacto { background-color: #0F4C81; }
+#proyectos h2 { background-color: #BB2649; color: #ffffff !important; }
 
+/* Resplandores (Sombras de color) */
+#perfil.seccion-cloud-dancer { box-shadow: 0 8px 15px rgba(0, 0, 0, 0.6) !important; }
+#formacion .seccion-cloud-dancer { box-shadow: 0 10px 20px rgba(0, 148, 115, 0.6) !important; }
+#experiencia .seccion-cloud-dancer { box-shadow: 0 10px 20px rgba(255, 127, 80, 0.6) !important; }
+#proyectos .seccion-cloud-dancer { box-shadow: 0 10px 20px rgba(187, 38, 73, 0.6) !important; }
+#habilidades .seccion-cloud-dancer { box-shadow: 0 10px 20px rgba(102, 103, 171, 0.6) !important; }
+#contacto .seccion-cloud-dancer { box-shadow: 0 10px 20px rgba(15, 76, 129, 0.6) !important; }
+.seccion-cloud-dancer-footer { box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4) !important; }
+
+/* ==========================================================================
+   5. COMPONENTES: PERFIL, ACORDEÓN Y HABILIDADES
+   ========================================================================== */
 /* Perfil */
 .perfil-layout { 
-    display: flex; 
-    gap: 0; /* Antes era 30px. Lo ponemos a 0 para que se junten */
-    margin: -30px; 
-    align-items: stretch; 
+    display: flex; gap: 0; margin: -30px; align-items: stretch; 
 }
 .perfil-imagen { flex: 0 0 40%; overflow: hidden; border-radius: 12px 0 0 12px; }
 .perfil-imagen img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
 .perfil-texto { 
-    flex: 1; 
-    padding: 20px 35px; /* Reducido para que el bloque sea más pequeño */
-    text-align: left; 
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Esto centra el texto verticalmente si sobra espacio */
+    flex: 1; padding: 20px 35px; text-align: left; 
+    display: flex; flex-direction: column; justify-content: center;
+}
+.perfil-texto h1 { line-height: 1.1; margin-bottom: 25px; }
+.perfil-texto p { text-align: justify; text-justify: inter-word; margin-bottom: 12px; }
+
+/* Botón Perfil */
+.boton-perfil {
+    width: fit-content !important; padding: 10px 20px !important;
+    align-self: flex-start; margin-top: 10px;
 }
 
-.perfil-texto h1 {
-    line-height: 1.1;     /* Junta las líneas del título (más compacto) */
-    margin-bottom: 25px;  /* Separa el título del párrafo (más aire) */
+/* Prompt AI Container */
+.prompt-container {
+    margin-top: 25px; padding: 20px; background-color: #ffffff;
+    border-left: 5px solid #BB2649; border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
-.perfil-texto p {
-    text-align: justify;      /* Alineación justificada */
-    text-justify: inter-word; /* Distribución inteligente de espacios */
-    margin-bottom: 12px;      /* Un poquito de aire entre párrafos para que respire */
+.prompt-label {
+    font-weight: 900; font-size: 11px; text-transform: uppercase;
+    color: #BB2649; display: block; margin-bottom: 10px;
 }
+
+/* --- ACORDEÓN FORMACIÓN --- */
+.acordeon-header {
+    width: 100%; background: transparent !important;
+    border: none !important; outline: none !important; box-shadow: none !important;
+    text-align: left; padding: 15px 0; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'Montserrat', sans-serif;
+}
+.acordeon-item { border-bottom: 1px solid #e0e0e0; margin-bottom: 10px; }
+.acordeon-item:last-child { border-bottom: none; }
+
+.acordeon-header h3 {
+    font-size: 1rem; margin: 0; color: #333; position: relative;
+    padding-left: 20px; line-height: 1.4; font-weight: 700;
+}
+.acordeon-header h3::before {
+    content: "•"; color: #009473; font-size: 1.5em;
+    position: absolute; left: 0; top: -2px;
+}
+
+.icono-acordeon { font-size: 0.8rem; color: #009473; transition: transform 0.3s ease; margin-left: 15px; }
+.acordeon-header.activo .icono-acordeon { transform: rotate(180deg); }
+.acordeon-header.activo h3 { color: #009473; }
+
+.acordeon-contenido {
+    max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; padding-left: 20px; 
+}
+.acordeon-contenido p { margin-bottom: 15px; font-size: 0.95rem; color: #555; line-height: 1.6; }
+.acordeon-contenido .institucion { font-weight: bold; color: #000; margin-bottom: 5px; display: block; }
 
 /* Habilidades */
 .habilidades-lista { display: flex; gap: 20px; }
 .columna-habilidad { flex: 1; }
-.columna-habilidad h3 { color: #6667AB; border-bottom: 2px solid #6667AB; padding-bottom: 5px; margin-bottom: 10px; }
+.columna-habilidad h3 { 
+    color: #6667AB; 
+    border-bottom: 2px solid #6667AB; 
+    padding-bottom: 5px; margin-bottom: 10px; 
+}
 .columna-habilidad li { list-style: none; position: relative; padding-left: 20px; }
 .columna-habilidad li::before { content: "•"; color: #6667AB; font-weight: bold; position: absolute; left: 0; }
 
-/* --- Resplandores Compactos e Intensos --- */
-
-/* Formación (Verde) */
-#formacion .seccion-cloud-dancer {
-    box-shadow: 0 10px 20px rgba(0, 148, 115, 0.6) !important;
-}
-
-/* Experiencia (Naranja) */
-#experiencia .seccion-cloud-dancer {
-    box-shadow: 0 10px 20px rgba(255, 127, 80, 0.6) !important;
-}
-
-/* Proyectos (Rojo/Vino) */
-#proyectos .seccion-cloud-dancer {
-    box-shadow: 0 10px 20px rgba(187, 38, 73, 0.6) !important;
-}
-
-/* Habilidades (Morado) */
-#habilidades .seccion-cloud-dancer {
-    box-shadow: 0 10px 20px rgba(102, 103, 171, 0.6) !important;
-}
-
-/* Contacto (Azul) */
-#contacto .seccion-cloud-dancer {
-    box-shadow: 0 10px 20px rgba(15, 76, 129, 0.6) !important;
-}
-
-/* Paleta de Color (Negro) */
-.seccion-cloud-dancer-footer {
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4) !important;
-}
-
-/* Resplandor Negro para el bloque Quién Soy (Perfil) */
-#perfil.seccion-cloud-dancer {
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.6) !important;
+/* Experiencia */
+#experiencia ul { list-style: none; padding-left: 25px; margin-top: 15px; }
+#experiencia li { position: relative; margin-bottom: 10px; padding-left: 15px; line-height: 1.5; }
+#experiencia li::before {
+    content: "•"; color: #FF7F50; font-weight: bold; font-size: 1.5em;
+    position: absolute; left: -15px; top: -5px;
 }
 
 /* ==========================================================================
-   4. PORTAFOLIO Y GALERÍA
+   6. PORTAFOLIO Y GALERÍA (LIGHTBOX)
    ========================================================================== */
 .proyectos-grid { display: flex; gap: 20px; margin-top: 30px; }
 .tarjeta-proyecto {
@@ -272,6 +263,14 @@ a { text-decoration: none !important; }
 }
 .tarjeta-proyecto:hover { transform: translateY(-8px); }
 
+/* Separador */
+.separador-proyectos {
+    margin-top: 10px !important; margin-bottom: 20px !important;
+    border: 0; border-top: 2px solid #e0e0e0; opacity: 0.5;
+}
+#proyectos h3 { margin-bottom: 10px !important; }
+
+/* Galería Miniaturas */
 .portafolio-grafico { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
 .miniatura-contenedor { overflow: hidden; aspect-ratio: 1 / 1; }
 .miniatura-contenedor img { width: 100% !important; height: 100% !important; object-fit: cover; display: block; }
@@ -288,143 +287,106 @@ a { text-decoration: none !important; }
     padding: 30px; border-radius: 15px; text-align: center;
 }
 .lightbox-contenido img { max-width: 100%; max-height: 70vh; object-fit: contain; margin-bottom: 15px; }
-
-/* Asegurar que el área de cierre cubra todo el fondo */
-.lightbox-cerrar-area {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    cursor: default;
-}
-
-/* Botón de cierre (X) visible y funcional */
-.btn-cerrar-x {
-    position: absolute;
-    top: -40px;
-    right: 0;
-    font-size: 35px;
-    color: #fff;
-    text-decoration: none !important;
-    font-weight: bold;
-}
-
-body.modo-contraste .btn-cerrar-x {
-    color: #fff !important;
-}
+.lightbox-cerrar-area { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; cursor: default; }
+.btn-cerrar-x { position: absolute; top: -40px; right: 0; font-size: 35px; color: #fff; text-decoration: none !important; font-weight: bold; }
 
 /* ==========================================================================
-   5. FOOTER Y PALETA DE COLORES
+   7. FORMULARIO Y FOOTER
    ========================================================================== */
-.referencias-grid {
-    display: grid; grid-template-columns: repeat(6, 1fr); 
-    gap: 20px; justify-items: center; align-items: start; margin-top: 30px;
+.cta-boton {
+    background-color: #000000 !important; color: #ffffff !important;
+    padding: 12px 24px; border-radius: 5px; font-weight: 700;
+    display: inline-block; border: none; transition: 0.3s;
 }
 
-.referencia-item {
-    display: flex; flex-direction: column; align-items: center; text-align: center;
-    transition: transform 0.3s ease;
-}
+.formulario-contacto { display: flex; flex-direction: column; gap: 15px; max-width: 600px; margin: 20px auto 0; }
+.formulario-contacto label { display: none !important; }
+.formulario-contacto label.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
 
+.formulario-contacto input, .formulario-contacto textarea {
+    width: 100%; padding: 12px 15px; border: 1px solid #ccc; border-radius: 8px;
+    font-family: inherit; font-size: 14px; background-color: #ffffff;
+}
+.boton-contacto {
+    width: 100%; background-color: #000000 !important; color: #ffffff !important;
+    padding: 15px !important; border: none; border-radius: 8px; font-weight: 700; cursor: pointer;
+    text-align: center; transition: background 0.3s ease;
+}
+.boton-contacto:hover { opacity: 0.8; }
+.redes-sociales { display: flex; justify-content: center; gap: 20px; margin-top: 25px; font-weight: 700; }
+
+.referencias-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; justify-items: center; align-items: start; margin-top: 30px; }
+.referencia-item { display: flex; flex-direction: column; align-items: center; text-align: center; transition: transform 0.3s ease; }
 .muestra-color { width: 100px; height: 100px; border-radius: 10px; border: 1px solid #ccc; margin-bottom: 10px; }
-
 .referencia-item b, .referencia-item p { color: #000; font-size: 12px; line-height: 1.2; }
-
 .footer-bottom { text-align: center; padding: 20px 0 40px; color: #666; font-size: 0.85em; }
 
+/* ==========================================================================
+   8. CONTROLES INTERACTIVOS
+   ========================================================================== */
+.controles-interactivos {
+    position: fixed; bottom: 25px; right: 25px; z-index: 100010;
+    display: flex; flex-direction: column-reverse; gap: 12px; align-items: center;
+}
+
+#toggle-bn, #btn-cv, #btn-subir, .menu-hamburguesa {
+    width: 45px; height: 45px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    border: 2px solid #000; background: #fff;
+    cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.icono-btn, .icono-flecha { font-size: 36px !important; line-height: 1; display: flex; align-items: center; justify-content: center; }
+
+#btn-subir {
+    opacity: 0; visibility: hidden; height: 0; margin: 0; padding: 0; border: none; overflow: hidden; transform: translateY(15px);
+}
+#btn-subir.mostrar {
+    opacity: 1; visibility: visible; height: 45px; border: 2px solid #000; transform: translateY(0);
+}
+#btn-cv { background: #000; color: #fff !important; font-size: 11px; font-weight: 800; text-decoration: none; }
+.menu-hamburguesa { display: none !important; }
 
 /* ==========================================================================
-   ESTILOS ACORDEÓN FORMACIÓN (GLOBAL - PARA PC Y MÓVIL)
-   ¡Pegar esto al final del todo del archivo style.css!
+   9. MODO CONTRASTE (NOCHE)
    ========================================================================== */
+body.modo-contraste { background-color: #000 !important; color: #ffffff !important; }
 
-/* Reseteo agresivo para quitar aspecto de botón */
-.acordeon-header {
-    width: 100%;
-    background: transparent !important; /* Quita el gris de fondo */
-    background-color: transparent !important;
-    border: none !important;            /* Quita el borde de botón */
-    outline: none !important;           /* Quita el borde azul al hacer clic */
-    box-shadow: none !important;        /* Quita sombras raras */
-    text-align: left;
-    padding: 15px 0;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-family: 'Montserrat', sans-serif; /* Asegura tu tipografía */
+body.modo-contraste header, body.modo-contraste .nav-links,
+body.modo-contraste .seccion-cloud-dancer, body.modo-contraste .seccion-cloud-dancer-footer,
+body.modo-contraste .tarjeta-proyecto, body.modo-contraste .lightbox-contenido {
+    background-color: #000 !important; border: none !important; color: #ffffff !important;
 }
 
-/* Contenedor de cada ítem */
-.acordeon-item {
-    border-bottom: 1px solid #e0e0e0;
-    margin-bottom: 10px;
-}
-.acordeon-item:last-child {
-    border-bottom: none;
-}
+/* Barra, Prompt y Redes */
+body.modo-contraste #progress-bar { background-color: #ffffff !important; }
+body.modo-contraste .prompt-container { background-color: #1a1a1a !important; border-left: 5px solid #ffffff !important; color: #fff !important; }
+body.modo-contraste .prompt-label { background-color: #ffffff !important; color: #000000 !important; }
+body.modo-contraste .prompt-quote { color: #ddd !important; }
+body.modo-contraste .redes-sociales a { color: #ffffff !important; }
 
-/* Título dentro del botón */
-.acordeon-header h3 {
-    font-size: 1rem;
-    margin: 0;
-    color: #333;
-    position: relative;
-    padding-left: 20px; /* Espacio para el punto */
-    line-height: 1.4;
-    font-weight: 700;   /* Negrita bonita */
-}
+/* Subrayados y Separadores */
+body.modo-contraste .columna-habilidad h3 { border-bottom-color: #ffffff !important; color: #ffffff !important; }
+body.modo-contraste .separador-proyectos { border-color: rgba(255,255,255,0.4) !important; }
 
-/* EL PUNTO ESMERALDA */
-.acordeon-header h3::before {
-    content: "•";
-    color: #009473; /* Verde Emerald */
-    font-size: 1.5em;
-    position: absolute;
-    left: 0;
-    top: -2px;
-}
+/* Puntos y Flechas */
+body.modo-contraste .acordeon-header h3::before,
+body.modo-contraste #experiencia li::before,
+body.modo-contraste .columna-habilidad li::before,
+body.modo-contraste .icono-acordeon { color: #ffffff !important; }
 
-/* La flecha giratoria */
-.icono-acordeon {
-    font-size: 0.8rem;
-    color: #009473; /* Verde Emerald */
-    transition: transform 0.3s ease;
-    margin-left: 15px;
+/* Títulos Secciones */
+body.modo-contraste .bloque-pantone, 
+body.modo-contraste .bloque-pantone-experiencia, 
+body.modo-contraste .bloque-pantone-formacion, 
+body.modo-contraste .bloque-pantone-habilidades, 
+body.modo-contraste .bloque-pantone-contacto {
+    color: #ffffff !important; background-color: #2a2929 !important;
 }
+body.modo-contraste .seccion-cloud-dancer h3, body.modo-contraste .seccion-cloud-dancer p,
+body.modo-contraste .seccion-cloud-dancer li, body.modo-contraste .footer-bottom { color: #ffffff !important; }
 
-/* Estado ACTIVO (Cuando está abierto) */
-.acordeon-header.activo .icono-acordeon {
-    transform: rotate(180deg); /* Gira la flecha */
-}
-.acordeon-header.activo h3 {
-    color: #009473; /* Pone el título verde también al abrir */
-}
-
-/* El contenido oculto (Animación suave) */
-.acordeon-contenido {
-    max-height: 0;           /* ESTO ES LO QUE LO OCULTA */
-    overflow: hidden;        /* ESTO TAMBIÉN ES IMPRESCINDIBLE */
-    transition: max-height 0.3s ease-out;
-    padding-left: 20px; 
-}
-
-.acordeon-contenido p {
-    margin-bottom: 15px;
-    font-size: 0.95rem;
-    color: #555;
-    line-height: 1.6;
-}
-.acordeon-contenido .institucion {
-    font-weight: bold;
-    color: #000;
-    margin-bottom: 5px;
-    display: block; /* Asegura que salte de línea */
-}
-
-/* MODO NOCHE (Ajustes para que se vea bien en oscuro) */
+/* Acordeón */
 body.modo-contraste .acordeon-header { background: transparent !important; }
 body.modo-contraste .acordeon-header h3 { color: #fff; }
 body.modo-contraste .acordeon-header.activo h3 { color: #009473; }
@@ -432,750 +394,167 @@ body.modo-contraste .acordeon-contenido p { color: #ccc; }
 body.modo-contraste .acordeon-contenido .institucion { color: #fff; }
 body.modo-contraste .acordeon-item { border-bottom: 1px solid #333; }
 
-.prompt-container {
-    margin-top: 25px;
-    padding: 20px;
-    background-color: #ffffff;
-    border-left: 5px solid #BB2649; /* El toque de color lateral */
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+/* Botones y Form */
+body.modo-contraste .cta-boton, body.modo-contraste .boton-contacto, body.modo-contraste .boton-perfil {
+    background-color: #ffffff !important; color: #000000 !important; border: none !important;
 }
-
-.prompt-label {
-    font-weight: 900;
-    font-size: 11px;
-    text-transform: uppercase;
-    color: #BB2649;
-    display: block;
-    margin-bottom: 10px;
+body.modo-contraste .formulario-contacto input, body.modo-contraste .formulario-contacto textarea {
+    background-color: #1a1a1a !important; color: #ffffff !important; border: 1px solid #333333 !important;
 }
+body.modo-contraste .formulario-contacto ::placeholder { color: #888888 !important; }
 
-/* Estilo específico para las listas de Experiencia */
-#experiencia ul {
-    list-style: none; /* Quitamos el punto por defecto */
-    padding-left: 25px; /* Aumentamos la tabulación de la lista completa */
-    margin-top: 15px;
+/* Controles */
+body.modo-contraste #toggle-bn, body.modo-contraste #btn-subir, body.modo-contraste #menu-movil-btn {
+    background-color: #000 !important; border-color: #fff !important; color: #fff !important;
 }
-
-#experiencia li {
-    position: relative;
-    margin-bottom: 10px;
-    padding-left: 15px; /* Espacio entre el punto naranja y el texto */
-    line-height: 1.5;
-}
-
-/* Creamos el punto naranja personalizado */
-#experiencia li::before {
-    content: "•"; 
-    color: #FF7F50; /* El naranja Living Coral de tu paleta */
-    font-weight: bold;
-    font-size: 1.5em; /* Un poco más grande para que destaque */
-    position: absolute;
-    left: -15px; /* Posicionamiento de la viñeta */
-    top: -5px;   /* Ajuste vertical para centrar con el texto */
-}
-
-/* --- AJUSTE ESPACIADO PROYECTOS WEB --- */
-
-.separador-proyectos {
-    margin-top: 10px !important;    /* Separa de las fotos de arriba */
-    margin-bottom: 20px !important; /* Empuja el título "Proyectos Web" hacia abajo */
-    border: 0;
-    border-top: 2px solid #e0e0e0; /* Una línea gris sutil y elegante */
-    opacity: 0.5;
-}
-
-/* Aseguramos que el título H3 también respire un poco respecto a las tarjetas */
-#proyectos h3 {
-    margin-bottom: 10px !important;
-}
-
-/* ==========================================================================
-   6. CONTROLES INTERACTIVOS (ORDEN: LUNA SOBRE CV)
-   ========================================================================== */
-.controles-interactivos {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    z-index: 100010;
-    display: flex;
-    flex-direction: column-reverse; /* El primero del HTML se queda abajo */
-    gap: 12px;
-    align-items: center;
-}
-
-#toggle-bn, #btn-cv, #btn-subir, .menu-hamburguesa {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid #000;
-    background: #fff;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Iconos al 80% del círculo */
-.icono-btn, .icono-flecha {
-    font-size: 36px !important; 
-    line-height: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Flecha colapsada al inicio */
-#btn-subir {
-    opacity: 0;
-    visibility: hidden;
-    height: 0;
-    margin: 0;
-    padding: 0;
-    border: none;
-    overflow: hidden;
-    transform: translateY(15px);
-}
-
-/* Flecha activa: Empuja al CV y la Luna hacia arriba */
-#btn-subir.mostrar {
-    opacity: 1;
-    visibility: visible;
-    height: 45px;
-    border: 2px solid #000;
-    transform: translateY(0);
-}
-
-#btn-cv { 
-    background: #000; 
-    color: #fff !important; 
-    font-size: 11px; 
-    font-weight: 800;
-    text-decoration: none;
-}
-
-@media (max-width: 768px) {
-    #btn-cv { display: none !important; }
-    .menu-hamburguesa { display: flex !important; }
-}
-
-/* ==========================================================================
-   7. MODO CONTRASTE (NOCHE) - LIMPIO Y SIN BORDES BLANCOS
-   ========================================================================== */
-   
-body.modo-contraste { background-color: #000 !important; color: #ffffff !important; }
-
-body.modo-contraste header,
-body.modo-contraste .nav-links,
-body.modo-contraste .seccion-cloud-dancer,
-body.modo-contraste .seccion-cloud-dancer-footer,
-body.modo-contraste .tarjeta-proyecto,
-body.modo-contraste .prompt-container,
-body.modo-contraste .lightbox-contenido {
-    background-color: #000 !important;
-    border: none !important; /* Eliminados bordes blancos de cajas y menú */
-    color: #ffffff !important;
-}
-
-/* Forzar texto blanco en los títulos de bloques Pantone en modo noche */
-body.modo-contraste .bloque-pantone,
-body.modo-contraste .bloque-pantone-experiencia,
-body.modo-contraste .bloque-pantone-formacion,
-body.modo-contraste .bloque-pantone-habilidades,
-body.modo-contraste .bloque-pantone-contacto {
-    color: #ffffff !important;
-    background-color: #2a2929 !important; /* Gris oscuro coherente */
-}
-
-/* Forzar blanco en el contenido de la sección Experiencia */
-body.modo-contraste #experiencia .seccion-cloud-dancer,
-body.modo-contraste #experiencia h3,
-body.modo-contraste #experiencia p,
-body.modo-contraste #experiencia li {
-    color: #ffffff !important;
-}
-
-body.modo-contraste .seccion-cloud-dancer h3,
-body.modo-contraste .seccion-cloud-dancer p,
-body.modo-contraste .seccion-cloud-dancer li,
-body.modo-contraste .seccion-cloud-dancer ul,
-body.modo-contraste .columna-habilidad h3,
-body.modo-contraste .columna-habilidad li::before {
-    color: #ffffff !important;
-    border-color: #ffffff !important;
-}
-
-/* Botón "Ver Proyectos" y "Enviar" en Modo Noche */
-body.modo-contraste .cta-boton,
-body.modo-contraste .boton-contacto {
-    background-color: #ffffff !important;
-    color: #000000 !important;
-    border: none !important;
-}
-
-body.modo-contraste .nav-links li a,
-body.modo-contraste .seccion-cloud-dancer h1,
-body.modo-contraste .footer-bottom {
-    color: #ffffff !important;
-}
-
-body.modo-contraste #toggle-bn, 
-body.modo-contraste #btn-subir {
-    background-color: #000 !important;
-    border-color: #fff !important;
-    color: #fff !important;
-}
-
 body.modo-contraste #btn-cv { background-color: #fff !important; color: #000 !important; }
 
-body.modo-contraste .bloque-pantone { background-color: #222 !important; }
-
+/* Imágenes Global */
 body.modo-contraste img { filter: grayscale(100%) brightness(0.7) !important; }
-
-
-body.modo-contraste .banner-color { 
-    display: none !important; 
-}
-body.modo-contraste .banner-bn { 
-    display: block !important; 
-}
-
-
-/* Prompt AI en modo noche */
-body.modo-contraste .prompt-label { background-color: #fff !important; color: #000 !important; }
-
-/* Forzar blanco en títulos de habilidades y listas en modo noche */
-body.modo-contraste .columna-habilidad h3,
-body.modo-contraste .columna-habilidad li,
-body.modo-contraste .columna-habilidad li::before {
-    color: #ffffff !important;
-    border-color: #ffffff !important;
+/* Excepciones que mantienen color/brillo */
+body.modo-contraste .logo-404, 
+body.modo-contraste .btn-cerrar-x,
+body.modo-contraste .banner-bn,
+body.modo-contraste .banner-movil.banner-bn { 
+    filter: none !important; 
+    color: #fff !important; 
 }
 
-/* Corregir el botón "Ver Proyectos" que sale morado */
-body.modo-contraste .cta-boton, 
-body.modo-contraste .boton-perfil {
-    background-color: #ffffff !important;
-    color: #000000 !important;
+/* Resplandores */
+body.modo-contraste #perfil.seccion-cloud-dancer, body.modo-contraste #formacion .seccion-cloud-dancer,
+body.modo-contraste #experiencia .seccion-cloud-dancer, body.modo-contraste #proyectos .seccion-cloud-dancer,
+body.modo-contraste #habilidades .seccion-cloud-dancer, body.modo-contraste #contacto .seccion-cloud-dancer {
+    box-shadow: 0 8px 15px rgba(255, 255, 255, 0.4) !important; border: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
-
-/* Corregir el bloque de AI Generation Metadata */
-body.modo-contraste .prompt-container {
-    background-color: #1a1a1a !important;
-    border-left: 4px solid #ffffff !important;
-}
-
-body.modo-contraste .prompt-label {
-    background-color: #ffffff !important;
-    color: #000000 !important;
-}
-
-body.modo-contraste .prompt-quote {
-    color: #dddddd !important;
-}
-
-/* Ocultar la paleta de color y su contenedor en modo noche */
-body.modo-contraste .paleta-explicacion,
-body.modo-contraste .seccion-cloud-dancer-footer {
-    display: none !important;
-}
-
-/* Forzar bordes blancos en las tarjetas de proyectos en Modo Noche */
 body.modo-contraste .tarjeta-proyecto {
-    border: 1px solid #ffffff !important;
-    background-color: #000000 !important;
-    border-top: 5px solid #ffffff !important; /* El borde superior también blanco */
+    border: 1px solid #ffffff !important; background-color: #000000 !important; border-top: 5px solid #ffffff !important;
 }
 
-body.modo-contraste .tarjeta-proyecto h3,
-body.modo-contraste .tarjeta-proyecto p {
-    color: #ffffff !important;
-}
+body.modo-contraste .paleta-explicacion, body.modo-contraste .seccion-cloud-dancer-footer { display: none !important; }
 
-body.modo-contraste #experiencia li::before {
-    color: #ffffff !important;
-}
-/* Forzar enlaces blancos en las redes sociales durante el modo noche */
-body.modo-contraste .redes-sociales a {
-    color: #ffffff !important;
-    opacity: 1;
-    transition: opacity 0.3s;
-}
-
-body.modo-contraste .redes-sociales a:hover {
-    opacity: 0.7;
-}
-
-/* Barra de progreso blanca en modo noche */
-body.modo-contraste #progress-bar {
-    background-color: #ffffff !important;
-}
-
-/* --- Resplandores Blancos para Modo Noche --- */
-body.modo-contraste #perfil.seccion-cloud-dancer,
-body.modo-contraste #formacion .seccion-cloud-dancer,
-body.modo-contraste #experiencia .seccion-cloud-dancer,
-body.modo-contraste #proyectos .seccion-cloud-dancer,
-body.modo-contraste #habilidades .seccion-cloud-dancer,
-body.modo-contraste #contacto .seccion-cloud-dancer,
-body.modo-contraste .seccion-cloud-dancer-footer {
-    box-shadow: 0 8px 15px rgba(255, 255, 255, 0.4) !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important; /* Un borde muy fino para definir la caja */
-}
-
-/* Campos del formulario en Modo Noche */
-body.modo-contraste .formulario-contacto input, 
-body.modo-contraste .formulario-contacto textarea {
-    background-color: #1a1a1a !important; /* Gris casi negro */
-    color: #ffffff !important;           /* Texto blanco */
-    border: 1px solid #333333 !important; /* Borde gris oscuro sutil */
-}
-
-/* Efecto al hacer clic (focus) en los campos */
-body.modo-contraste .formulario-contacto input:focus, 
-body.modo-contraste .formulario-contacto textarea:focus {
-    border-color: #ffffff !important; /* Resalta el borde en blanco al escribir */
-    outline: none;
-}
-
-/* Estilo del texto de ayuda (Placeholder) en Modo Noche */
-body.modo-contraste .formulario-contacto ::placeholder {
-    color: #888888 !important; /* Gris medio para que no brille tanto como el texto real */
-}
-
-body.modo-contraste .banner-bn {
-    filter: none !important;      /* Anula el grayscale y brightness(0.7) global */
-    opacity: 1 !important;        /* Asegura opacidad total */
-    display: block !important;
-}
-
-body.modo-contraste .nav-links li a:hover,
+/* Enlaces Menú Noche */
+body.modo-contraste .nav-links li a[href], 
+body.modo-contraste .nav-links li a[href]:hover,
 body.modo-contraste .nav-links li a.active-link {
-    background-color: #333333 !important; /* El gris oscuro que querías */
-    color: #ffffff !important;            /* Texto blanco */
-    border: 1px solid #555 !important;    /* Un borde sutil para darle clase */
+    background-color: transparent !important; color: #ffffff !important;
 }
-
-/* Opcional: Si el botón de "Contacto" (el azul) también se ve de color, lo forzamos a gris */
-body.modo-contraste .nav-links li a[href="#contacto"] {
-    background-color: transparent !important; /* Quitamos el fondo azul si lo tuviera */
+body.modo-contraste .nav-links li a[href]:hover,
+body.modo-contraste .nav-links li a.active-link {
+    background-color: #333333 !important; border: 1px solid #555 !important;
 }
-
-/* Corrección Botón Hamburguesa en Modo Noche */
-body.modo-contraste #menu-movil-btn {
-    background-color: #000 !important;
-    border-color: #fff !important;
-    color: #fff !important;
-}
+body.modo-contraste .nav-links li a[href="#contacto"] { background-color: transparent !important; }
 
 /* ==========================================================================
-   FORMULARIO DE CONTACTO (CUADRADO Y LIMPIO)
-   ========================================================================== */
-
-.formulario-contacto label.sr-only { /*wace*/
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border-width: 0;
-}
-
-.formulario-contacto {
-    display: flex;
-    flex-direction: column; /* Asegura que vayan uno debajo de otro */
-    gap: 15px;
-    max-width: 600px;
-    margin: 20px auto 0;
-}
-
-/* Ocultar etiquetas para que solo se vea el placeholder */
-.formulario-contacto label {
-    display: none !important;
-}
-
-/* Estilo de los campos de texto */
-.formulario-contacto input, 
-.formulario-contacto textarea {
-    width: 100%;
-    padding: 12px 15px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-family: inherit;
-    font-size: 14px;
-    background-color: #ffffff;
-}
-
-/* El botón de enviar bien centrado y con ancho completo */
-.boton-contacto {
-    width: 100%;
-    border: none;
-    cursor: pointer;
-    text-align: center;
-    padding: 15px !important;
-    font-size: 16px;
-    transition: background 0.3s ease;
-}
-
-.boton-contacto:hover {
-    opacity: 0.8;
-}
-
-/* Ajuste de redes sociales */
-.redes-sociales {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 25px;
-    font-weight: 700;
-}
-/* Botón General (Ver Proyectos) */
-.cta-boton {
-    background-color: #000000 !important;
-    color: #ffffff !important;
-    padding: 12px 24px;
-    border-radius: 5px;
-    font-weight: 700;
-    display: inline-block;
-    border: none;
-    transition: 0.3s;
-}
-
-/* Botón específico de Contacto */
-.boton-contacto {
-    background-color: #000000 !important;
-    color: #ffffff !important;
-    padding: 15px !important;
-    border: none;
-    border-radius: 8px;
-    font-weight: 700;
-    cursor: pointer;
-    width: 100%; /* Para que cuadre perfectamente */
-}
-/* ==========================================================================
-                    MENU HAMBURGUESA (Oculto por defecto en PC)
-   ========================================================================== */
-
-.menu-hamburguesa { display: none !important; }
-
-@media (max-width: 768px) {
-    .menu-hamburguesa { 
-        display: flex !important; 
-    }
-
-    /* Estilo del Popup del Menú */
-    .nav-links {
-        display: none; /* Se activa con JS */
-        flex-direction: column !important;
-        position: fixed;
-        bottom: 145px; /* Ajustado para quedar encima de los botones */
-        right: 20px;
-        width: 200px;
-        background-color: #ffffff !important;
-        padding: 15px;
-        border-radius: 12px;
-        box-shadow: 0 8px 15px rgba(0,0,0,0.2);
-        z-index: 100015;
-        gap: 15px !important;
-    }
-
-    /* Clase que activaremos con JS */
-    .nav-links.active {
-        display: flex !important;
-        animation: fadeInMenu 0.3s ease;
-    }
-
-    .nav-links li a {
-        font-size: 1.1rem;
-        display: block;
-        padding: 5px 0;
-    }
-
-    /* MODO NOCHE PARA EL POPUP */
-    body.modo-contraste .nav-links {
-        background-color: #1a1a1a !important;
-        box-shadow: 0 8px 15px rgba(255,255,255,0.1);
-        border: 1px solid #333;
-    }
-}
-
-/* Animación de entrada suave */
-@keyframes fadeInMenu {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-
-/* ==========================================================================
-   8. RESPONSIVE (MÓVIL) - CORREGIDO PARA ICONOS FLOTANTES
+   10. RESPONSIVE (MÓVIL < 768px)
    ========================================================================== */
 @media (max-width: 768px) {
-
-
-#header {
-        padding: 0 !important;
-        margin: 0 !important;
-        min-height: auto !important;
-    }
-
-    /* 2. Matamos el flex para eliminar el gap de 15px */
-    .nav-centrado {
-        display: block !important; 
-        gap: 0 !important;
-    }
-
-    /* 3. Control total del Logo para que no guarde espacios */
-    .logo {
-        line-height: 0 !important; /* Elimina espacio inferior residual de las imágenes */
-        margin: 0 !important;
-        padding: 0 !important;
-        position: relative;
-    }
-
-/* Busca esto dentro del @media (max-width: 768px) */
-
-.logo img {
-    width: 100% !important;
-    max-width: 400px !important;
-    height: auto !important;     /* Altura automática */
-    margin: 0 auto !important;
-    display: block !important;
     
-    /* Aseguramos nitidez también en móvil */
-    object-fit: contain;
-    image-rendering: pixelated; 
-}
+    /* BLOQUEO TOTAL DE LOGOS DE PC EN MÓVIL */
+    .banner-pc,
+    .banner-pc.banner-color,
+    .banner-pc.banner-bn { 
+        display: none !important; 
+    }
+    body.modo-contraste .banner-pc.banner-bn, 
+    body.modo-contraste .banner-pc.banner-color { 
+        display: none !important; 
+    }
+    
+    /* MÓVIL MODO DÍA */
+    body:not(.modo-contraste) .banner-movil.banner-color { display: block !important; }
+    body:not(.modo-contraste) .banner-movil.banner-bn { display: none !important; }
 
-    /* 4. Forzamos que el banner oculto desaparezca del flujo por completo */
-    body:not(.modo-contraste) .banner-bn,
-    body.modo-contraste .banner-color {
-        display: none !important;
-        position: absolute !important; /* Lo saca del flujo para que no ocupe sitio */
-        top: 0;
+    /* MÓVIL MODO NOCHE */
+    body.modo-contraste .banner-movil.banner-bn { display: block !important; }
+    body.modo-contraste .banner-movil.banner-color { display: none !important; }
+
+    
+    /* Tipografía y Header */
+    body { font-size: 13px !important; }
+    #header { padding: 0 !important; margin: 0 !important; min-height: auto !important; }
+    .nav-centrado { display: block !important; gap: 0 !important; }
+    
+    /* Logo Móvil - AIRE ARRIBA/ABAJO */
+    .logo { 
+        line-height: 0 !important; 
+        margin: 25px 0 !important; /* 20px extra para que respire */
+        padding: 0 !important; 
+        position: relative; 
+    }
+    .logo img { 
+        width: 100% !important; 
+        max-width: 400px !important; 
+        margin: 0 auto !important; 
+        display: block !important; 
+        object-fit: contain; 
+        image-rendering: pixelated; 
     }
 
-    body:not(.modo-contraste) .banner-color,
-    body.modo-contraste .banner-bn {
-        display: block !important;
-        position: relative !important;
-    }
-
-    /* 5. El menú oculto tampoco puede ocupar espacio */
-    .nav-links:not(.active) {
-        display: none !important;
-        position: absolute !important;
-        height: 0 !important;
-    }
-
-    /* 6. Pegamos el perfil al banner */
-    #perfil.seccion-cloud-dancer {
-        margin-top: 0 !important;
-        padding-top: 5px !important;
-    }
-
-
-    /* El menú de texto se vuelve invisible y no ocupa espacio */
-    .nav-links:not(.active) {
-        display: none !important;
-        height: 0 !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        position: absolute !important;
-    }
-
-
-    body:not(.modo-contraste) .banner-bn {
-        display: none !important;
-    }
-
-    /* Ajuste de Logo y Perfil */
+    /* Layouts */
     .perfil-layout { flex-direction: column; margin: 0; }
-    .perfil-imagen { border-radius: 12px; height: 250px; width: 100% !important; }
+    .perfil-imagen { height: 350px !important; width: 100% !important; border-radius: 12px !important; }
+    .perfil-texto h1 { font-size: 1.3rem !important; }
+    .bloque-pantone { font-size: 1.6em !important; }
 
-    /* Rejillas: Habilidades, Proyectos y Galería */
     .habilidades-lista { flex-direction: column; }
-    .proyectos-grid, .portafolio-grafico, .referencias-grid { 
-        grid-template-columns: repeat(2, 1fr) !important; 
-        gap: 15px !important;
-    }
-    .tarjeta-proyecto:last-child { grid-column: span 2; }
+    .referencias-grid, .portafolio-grafico { grid-template-columns: repeat(2, 1fr) !important; gap: 15px !important; }
+    
+    .proyectos-grid { display: flex !important; flex-direction: column !important; gap: 20px !important; padding: 0 10px; }
+    .tarjeta-proyecto { width: 100% !important; grid-column: auto !important; }
 
+    /* Márgenes */
+    #perfil.seccion-cloud-dancer { padding: 30px !important; margin-top: 0 !important; }
+    .perfil-texto { padding: 15px 0 !important; }
+    .bloque-pantone { padding-left: 15px !important; padding-right: 15px !important; }
 
-    /* 1. Reducimos el relleno de la caja contenedora del perfil */
-    #perfil.seccion-cloud-dancer {
-        padding: 30px !important; /* Antes tenía 30px, lo igualamos a la barra verde */
-    }
-
-    /* 2. Eliminamos el relleno extra del texto interior */
-    .perfil-texto {
-        padding: 15px 0 !important; /* Quitamos los 35px laterales que sobraban */
-    }
-
-    /* 3. Ajustamos también el contenedor de las barras verdes para que todo coincida */
-    .bloque-pantone {
-        padding-left: 15px !important;
-        padding-right: 15px !important;
-    }
-
-    /* --- CONTROLES FLOTANTES EN MÓVIL --- */
-
-.controles-interactivos {
-    display: flex !important;
-    flex-direction: column-reverse !important;
-    bottom: 20px !important;
-    right: 20px !important;
-    gap: 0 !important; /* IMPORTANTE: Quitamos el gap fijo */
-}
-
-/* La flecha oculta: Sin altura, sin margen, invisible */
-#btn-subir {
-    display: flex !important;
-    max-height: 0 !important; /* Usamos max-height para animar */
-    margin: 0 !important;     /* Sin margen para que la luna baje del todo */
-    opacity: 0 !important;
-    visibility: hidden !important;
-    overflow: hidden !important;
-    border: none !important;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* Animación suave */
-}
-
-/* La flecha visible: Crece y EMPUJA hacia arriba */
-#btn-subir.mostrar {
-    max-height: 50px !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    margin-top: 15px !important; /* Este margen es el que empuja a la Luna hacia arriba */
-    border: 2px solid #000 !important;
-}
-
-/* Botones fijos (Luna y Hamburguesa) */
-#toggle-bn, .menu-hamburguesa {
-    width: 50px !important;
-    height: 50px !important;
-    margin: 0 !important; 
-}
-
-/* Separación fija solo entre la Luna y la Hamburguesa */
-#toggle-bn {
-    margin-top: 15px !important; /* Espacio entre Luna y Hamburguesa */
-}
-
-
-    /* Ajuste del Popup para que no tape los botones al desplegarse */
-    .nav-links {
-        bottom: 145px !important; 
-    }
-
-    /* Aseguramos que los botones NO se oculten y tengan buen tamaño */
-    #toggle-bn, #btn-subir {
-        display: flex !important; 
-        width: 50px !important;
-        height: 50px !important;
-        visibility: visible !important;
-    }
-
-    /* Ocultamos el CV solo en móvil para limpiar interfaz si así lo deseas */
+    /* Menú y Popup */
+    .menu-hamburguesa { display: flex !important; width: 50px !important; height: 50px !important; margin: 0 !important; }
     #btn-cv { display: none !important; }
 
-    /* Menú Navegación Móvil (Se activa con JS) */
     .nav-links {
-        display: none;
-        flex-direction: column !important;
-        position: fixed;
-        bottom: 85px; 
-        right: 25px;
-        width: 180px; 
-        background: #fff;
-        padding: 15px; 
-        border-radius: 12px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        z-index: 100015;
+        display: none; flex-direction: column !important; position: fixed; bottom: 145px; right: 20px;
+        width: 180px; background: #fff; padding: 15px; border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2); z-index: 100015; gap: 15px !important; height: auto !important; margin: 0 !important;
     }
-    .nav-links.active { display: flex !important; }
+    .nav-links.active { display: flex !important; animation: fadeInMenu 0.3s ease; }
+    @keyframes fadeInMenu { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-    /* Forzamos que cada tarjeta ocupe una línea completa */
-    .proyectos-grid {
-        display: flex !important;
-        flex-direction: column !important; /* Una debajo de otra */
-        gap: 20px !important;
-        padding: 0 10px;
-    }
-
-    .tarjeta-proyecto {
-        width: 100% !important;
-        grid-column: auto !important; /* Anulamos cualquier regla de grid anterior */
-    }
-
-    /* Ajuste para que los iconos flotantes (Luna/Subir) no tapen el contenido */
-    .controles-interactivos {
-        bottom: 15px !important;
-        right: 15px !important;
-    }
-
-    @media (max-width: 768px) {
-    /* Reducir el tamaño de letra base en el móvil */
-    body {
-        font-size: 13px !important; 
-    }
-
-    /* Opcional: Reducir también los títulos de las secciones para que guarden proporción */
-    .perfil-texto h1 {
-        font-size: 1.3rem !important;
-    }
-
-    .bloque-pantone {
-        font-size: 1.6em !important;
-    }
-.perfil-imagen img { 
-    width: 100%;
-    height: 100%;         /* Obliga a ocupar toda la altura del texto */
-    object-fit: cover;    /* Asegura que no queden huecos blancos si varía un pixel */
-    display: block;
-}
-
-    .perfil-imagen {
-        height: 350px !important; /* Ajusta esta altura si quieres ver más o menos cuerpo */
-        width: 100% !important;
-        border-radius: 12px !important;
-    }
-
-}
-}
-
-/* Detectamos cuando el móvil se pone en horizontal (Landscape) */
-@media (max-width: 932px) and (orientation: landscape) {
+    /* Colores Menú Móvil */
+    .nav-links li a { display: block; padding: 8px 12px; border-radius: 8px; transition: all 0.3s ease; font-size: 1.1rem; }
+    .nav-links li a[href="#perfil"]:hover, .nav-links li a[href="#perfil"].active-link { background: #333 !important; color: #fff !important; }
+    .nav-links li a[href="#formacion"]:hover, .nav-links li a[href="#formacion"].active-link { background: #009473 !important; color: #fff !important; }
+    .nav-links li a[href="#experiencia"]:hover, .nav-links li a[href="#experiencia"].active-link { background: #FF7F50 !important; color: #fff !important; }
+    .nav-links li a[href="#habilidades"]:hover, .nav-links li a[href="#habilidades"].active-link { background: #6667AB !important; color: #fff !important; }
+    .nav-links li a[href="#proyectos"]:hover, .nav-links li a[href="#proyectos"].active-link { background: #BB2649 !important; color: #fff !important; }
+    .nav-links li a[href="#contacto"]:hover, .nav-links li a[href="#contacto"].active-link { background: #0F4C81 !important; color: #fff !important; }
     
-    /* Forzamos que se mantenga la estructura de móvil (tarjetas en una línea) */
-    .proyectos-grid {
-        display: flex !important;
-        flex-direction: column !important;
-    }
+    body.modo-contraste .nav-links { background-color: #1a1a1a !important; border: 1px solid #333; }
 
-    /* Ocultamos el botón de CV para que no estorbe al girar */
-    #btn-cv {
-        display: none !important;
+    /* Controles Flotantes Móvil */
+    .controles-interactivos {
+        display: flex !important; flex-direction: column-reverse !important;
+        bottom: 20px !important; right: 20px !important; gap: 0 !important;
     }
-
-    /* Reducimos el tamaño del banner para que no ocupe toda la pantalla al girar */
-    .logo img {
-        width: 300px !important;
-        max-width: 80% !important;
+    #toggle-bn { margin-top: 15px !important; width: 50px !important; height: 50px !important; }
+    
+    #btn-subir {
+        display: flex !important; max-height: 0 !important; margin: 0 !important;
+        opacity: 0 !important; visibility: hidden !important; overflow: hidden; border: none !important;
+        width: 50px !important; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
-
-    /* Ajustamos el tamaño de la foto de perfil para que no sea infinita */
-    .perfil-imagen {
-        height: 250px !important;
+    #btn-subir.mostrar {
+        max-height: 50px !important; opacity: 1 !important; visibility: visible !important;
+        margin-top: 15px !important; border: 2px solid #000 !important;
     }
 }
 
-
-/* COLORES DEL MENU */
-/* --- COLORES DINÁMICOS PARA EL MENÚ MÓVIL --- */
+/* Landscape */
+@media (max-width: 932px) and (orientation: landscape) {
+    .proyectos-grid { display: flex !important; flex-direction: column !important; }
+    #btn-cv { display: none !important; }
+    .logo img { width: 300px !important; max-width: 80% !important; }
+    .perfil-imagen { height: 250px !important; }
+}
 
 /* Base: al pasar el ratón o estar activo */
 .nav-links li a {
@@ -1244,8 +623,8 @@ body.modo-contraste .nav-links li a.active-link {
 }
 
 .boton-perfil {
-    width: fit-content !important;  /* CLAVE: Se ajusta al tamaño del texto, no estira */
-    padding: 10px 20px !important;  /* Reducimos el "bombo" (antes era mucho más grande) */
-    align-self: flex-start;         /* Se asegura de quedarse a la izquierda */
-    margin-top: 10px;               /* Un poquito de aire con el texto de arriba */
+    width: fit-content !important;
+    padding: 10px 20px !important;
+    align-self: flex-start;
+    margin-top: 10px;
 }
