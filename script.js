@@ -247,26 +247,4 @@ document.addEventListener('keydown', function(e) {
         e.preventDefault();
         return false;
     }
-
 });
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault(); // 1. Evita que la URL cambie (El truco clave)
-
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-
-            if (targetElement) {
-                // 2. Hace el scroll suave manualmente
-                targetElement.scrollIntoView({
-                    behavior: 'smooth'
-                });
-                
-                // 3. (Opcional) Cierra el menú móvil si está abierto
-                const navLinks = document.querySelector('.nav-links');
-                if (navLinks && navLinks.classList.contains('active')) {
-                    navLinks.classList.remove('active');
-                }
-            }
-        });
-    });
