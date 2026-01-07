@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="robots" content="noindex, nofollow">
+    
+    <title>404 - ¡Aquí no hay Pepino!</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- ESTILOS BASE (Modo Día / Cloud Dancer) --- */
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            background-color: #f6f5f4; /* Cloud Dancer */
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            color: #333;
+            transition: background-color 0.3s ease;
+        }
+        
+        .caja-error {
+            max-width: 500px;
+            width: 100%;
+            padding: 40px 30px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border-top: 8px solid #0f4c81; /* Azul Clásico */
+            animation: entradaSuave 0.5s ease-out;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .logo-404 {
+            width: 100%;
+            max-width: 280px;
+            height: auto;
+            margin-bottom: 10px;
+            display: inline-block;
+            image-rendering: pixelated; 
+        }
+
+        h1 {
+            font-size: 6rem;
+            font-weight: 900;
+            line-height: 1;
+            margin: 0 0 10px 0;
+            letter-spacing: -3px;
+        }
+
+        h2 {
+            font-size: 1.3rem;
+            color: #0f4c81;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        p {
+            font-size: 1rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .boton-volver {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #000000;
+            color: #ffffff !important;
+            font-weight: 700;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .boton-volver:hover {
+            background-color: #0f4c81;
+            transform: translateY(-2px);
+        }
+
+        @keyframes entradaSuave {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- MODO NOCHE (Automático) --- */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #000000; /* Fondo negro puro */
+                color: #ffffff;
+            }
+
+            .caja-error {
+                background-color: #1a1a1a; /* Gris muy oscuro para la caja */
+                box-shadow: 0 15px 35px rgba(255,255,255,0.05); /* Sombra sutil blanca */
+                border-top: 8px solid #ffffff; /* Borde blanco para resaltar más */
+            }
+
+            h1 {
+                color: #ffffff;
+            }
+
+            h2 {
+                color: #ffffff; /* Títulos en blanco */
+            }
+
+            p {
+                color: #cccccc; /* Texto gris claro */
+            }
+
+            .boton-volver {
+                background-color: #ffffff;
+                color: #000000 !important;
+            }
+
+            .boton-volver:hover {
+                background-color: #cccccc;
+            }
+            
+            /* Invertir el banner si es muy oscuro, o dejarlo tal cual */
+            /* En este caso el banner tiene colores vivos, se verá bien sobre oscuro */
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 4rem; }
+            .caja-error { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="caja-error">
+        <img src="img/bannercolor.png" alt="Pepino Cochambre" class="logo-404">
+        
+        <h1>404</h1>
+        <h2>¡Vaya! Te has ido por las ramas</h2>
+        <p>
+            Parece que la página que buscas no existe, se ha mudado o está escondida en el huerto.
+        </p>
+    <a href="https://pepinocochambre.es" class="boton-volver">Volver al Inicio</a>
+    </div>
+
+</body>
+</html>
