@@ -96,18 +96,21 @@ a { text-decoration: none !important; }
    3. LÓGICA DE BANNERS (SOLUCIÓN DEFINITIVA)
    ========================================================================== */
 
-/* Regla base: ocultamos el de móvil en escritorio */
-.banner-movil { display: none !important; }
-
-/* En PC Día: Se ve el PC Color */
-.banner-pc.banner-color { display: block !important; }
-/* En PC Día: Se oculta el PC Negro */
-.banner-pc.banner-bn { display: none !important; }
-
-/* En PC Noche */
-body.modo-contraste .banner-pc.banner-color { display: none !important; }
-body.modo-contraste .banner-pc.banner-bn { display: block !important; }
-
+.banner-movil { 
+    display: none !important; 
+}
+.banner-pc.banner-color { 
+    display: block !important; 
+}
+.banner-pc.banner-bn { 
+    display: none !important; 
+}
+body.modo-contraste .banner-pc.banner-color { 
+    display: none !important; 
+}
+body.modo-contraste .banner-pc.banner-bn { 
+    display: block !important; 
+}
 
 /* Menú Principal */
 .nav-links {
@@ -627,4 +630,5 @@ body.modo-contraste .nav-links li a.active-link {
     padding: 10px 20px !important;
     align-self: flex-start;
     margin-top: 10px;
+
 }
