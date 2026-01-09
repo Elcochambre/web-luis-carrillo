@@ -37,51 +37,56 @@ if (btnBN) {
 // 3. VARIANTES ALEATORIAS 
 const variantes = [
     {
-        foto: "fotos/foto1.jpg", 
+        foto: "fotos/foto1.webp", 
         prompt: "Studio portrait of a man with a blonde hair streak, wearing a vibrant rainbow faux fur jacket with a fluffy hood, neutral grey background, high detail, sharp focus"
     },
     {
-        foto: "fotos/foto2.jpg", 
+        foto: "fotos/foto2.webp", 
         prompt: "Extreme close-up underwater portrait of a bearded man, sunlight caustics reflecting on skin, many tiny air bubbles, crystal clear blue water, hyper-realistic."
     },
     {
-        foto: "fotos/foto3.jpg", 
+        foto: "fotos/foto3.webp", 
         prompt: "Moody indoor portrait of a man in a grey sweater holding a steaming cup of coffee, soft window light, bookshelf background, warm cinematic tones, 8k resolution."
     },
     {
-        foto: "fotos/foto4.jpg", 
-        prompt: "Cinematic portrait of a bearded man holding a burning flower, bright orange flame illuminating his face, dark moody background, high contrast, 8k resolution."
+        foto: "fotos/foto4.webp", 
+        prompt: "Low angle photo of a man in a grey sweatshirt against a blue sky. Overlaid with white chalk-style doodles of UFOs, rockets, and COCHAMBRE text."
     },
     {
-        foto: "fotos/foto5.jpg", 
+        foto: "fotos/foto5.webp", 
         prompt: "Creative portrait of a man seen through broken mirror shards, small green leaves scattered on glass, dramatic shadows, moody lighting, artistic composition, 8k."
-    }, // <-- Coma añadida aquí
+    }, 
     {
-        foto: "fotos/foto6.jpg", 
+        foto: "fotos/foto6.webp", 
         prompt: "Full body shot of a man in a Blue Power Ranger cosplay suit, holding a helmet, standing in an abandoned industrial warehouse, gritty cinematic lighting, 8k." 
     } ,
     {
-        foto: "fotos/foto7.jpg", 
+        foto: "fotos/foto7.webp", 
         prompt: "Cinematic portrait of a bearded man in a dark overcoat, dramatic side lighting (chiaroscuro) against a slatted wood window, moody and realistic style." 
     } ,
         {
-        foto: "fotos/foto8.jpg", 
+        foto: "fotos/foto8.webp", 
         prompt: "Surreal portrait of a bearded man surrounded by vintage red telephones hanging from cables, solid red background, studio lighting, conceptual modern style." 
     } ,
    {
-        foto: "fotos/foto9.jpg", 
+        foto: "fotos/foto9.webp", 
         prompt: "Dramatic portrait, bearded man, dark background. A single horizontal red laser beam crosses over his left eye. Teal/cyan rim lighting, moody atmosphere." 
     } ,
     {
-        foto: "fotos/foto10.jpg", 
+        foto: "fotos/foto10.webp", 
         prompt: "High-contrast B&W portrait, bearded man looking up. Round mirrored sunglasses reflecting a city skyline. Black background, clean white t-shirt." 
     } ,
         {
-        foto: "fotos/foto11.jpg", 
+        foto: "fotos/foto11.webp", 
         prompt: "Surreal B&W photo, man's head inside a white birdcage. A black bowler hat sits on top of the cage. He wears a heavy patterned coat. Minimalist background." 
-    },   /*
+    }, 
+            {
+        foto: "fotos/foto12.webp", 
+        prompt: "Full-body B&W studio portrait of a bearded man on a stool, suit jacket, barefoot. Overlaid with neon yellow hand-drawn crown and body outlines." 
+    },
+    /*
         {
-        foto: "fotos/foto6.jpg", 
+        foto: "fotos/foto6.webp", 
         prompt: "" 
     } */
 ];
@@ -94,8 +99,19 @@ function inicializarPerfilAleatorio() {
     const textoElemento = document.getElementById('prompt-texto');
 
     if (imagenElemento && textoElemento) {
+        // 1. Cambiamos la fuente de la imagen
         imagenElemento.src = seleccion.foto;
         textoElemento.innerText = seleccion.prompt;
+
+        // 2. Esperamos a que la imagen nueva esté lista para mostrarla
+        imagenElemento.onload = () => {
+             imagenElemento.classList.add('visible');
+        };
+
+        // (Seguridad) Si la imagen ya estaba en caché, onload a veces no salta, así que forzamos:
+        if (imagenElemento.complete) {
+             imagenElemento.classList.add('visible');
+        }
     }
 }
 
@@ -269,4 +285,65 @@ acordeones.forEach(acordeon => {
             contenido.style.maxHeight = 0;
         }
     });
+});
+
+
+/* ==============================================
+   LÓGICA DEL EASTER EGG
+   ============================================== */
+document.addEventListener('DOMContentLoaded', () => {
+    
+    // 1. Identificamos el gatillo (La etiqueta roja del prompt)
+    const trigger = document.querySelector('.prompt-label');
+    const modalSecreto = document.getElementById('easter-egg-modal');
+    const btnCerrarSecreto = document.querySelector('.cerrar-secreto');
+
+    if (trigger && modalSecreto) {
+        
+        // Le añadimos una clase para que el cursor cambie al pasar por encima
+        trigger.classList.add('trigger-easter-egg');
+        trigger.title = "¿Qué escondes?"; // Pista al pasar el ratón
+
+        // Al hacer click, abrimos el modal
+        trigger.addEventListener('click', () => {
+            modalSecreto.classList.add('activo');
+        });
+
+        // Cerrar con la X
+        btnCerrarSecreto.addEventListener('click', () => {
+            modalSecreto.classList.remove('activo');
+        });
+
+        // Cerrar si haces click fuera de la caja
+        window.addEventListener('click', (e) => {
+            if (e.target == modalSecreto) {
+                modalSecreto.classList.remove('activo');
+            }
+        });
+        
+        // Cerrar con la tecla ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "Escape" && modalSecreto.classList.contains('activo')) {
+                modalSecreto.classList.remove('activo');
+            }
+        });
+    }
+
+    /* --- FUNCIONALIDAD BOTÓN DEBUG (RAYOS X) --- */
+    const btnDebug = document.getElementById('btn-debug-mode');
+
+    if (btnDebug) {
+        btnDebug.addEventListener('click', () => {
+            // Esto añade una clase especial al body
+            document.body.classList.toggle('debug-activo');
+            
+            if (document.body.classList.contains('debug-activo')) {
+                btnDebug.innerText = "[DESACTIVAR VISIÓN RAYOS X]";
+                btnDebug.style.background = "#009473"; // Verde
+            } else {
+                btnDebug.innerText = "[ACTIVAR VISIÓN RAYOS X]";
+                btnDebug.style.background = "#BB2649"; // Rojo
+            }
+        });
+    }
 });

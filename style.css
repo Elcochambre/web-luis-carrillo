@@ -1,5 +1,5 @@
 /* ==========================================================================
-   ÍNDICE DE SECCIONES - STYLE.CSS (VERSIÓN DEFINITIVA LUIS)
+   ÍNDICE DE SECCIONES - STYLE.CSS 
 ==========================================================================
    1. BASE, RESETEO Y TIPOGRAFÍA
    2. CABECERA Y NAVEGACIÓN (PC)
@@ -11,6 +11,7 @@
    8. CONTROLES INTERACTIVOS (FLOTANTES)
    9. MODO CONTRASTE (NOCHE)
    10. RESPONSIVE (MÓVIL < 768px)
+   11. EASTER EGG Y DEBUG
 ========================================================================== */
 
 /* ==========================================================================
@@ -454,8 +455,7 @@ body.modo-contraste .nav-links li a.active-link {
 body.modo-contraste .nav-links li a[href="#contacto"] { background-color: transparent !important; }
 
 body.modo-contraste .label-promo {
-    color: #cccccc !important; /* Un gris claro elegante */
-    /* O si prefieres blanco puro: color: #ffffff !important; */
+    color: #cccccc !important; 
 }
 /* ==========================================================================
    10. RESPONSIVE (MÓVIL < 768px)
@@ -490,7 +490,7 @@ body.modo-contraste .label-promo {
     /* Logo Móvil - AIRE ARRIBA/ABAJO */
     .logo { 
         line-height: 0 !important; 
-        margin: 25px 0 !important; /* 20px extra para que respire */
+        margin: 25px 0 !important; 
         padding: 0 !important; 
         position: relative; 
     }
@@ -505,18 +505,17 @@ body.modo-contraste .label-promo {
 
     .redes-sociales {
         display: flex !important;
-        flex-wrap: wrap !important; /* <--- ESTA ES LA CLAVE: Permite múltiples líneas */
+        flex-wrap: wrap !important;
         justify-content: center !important;
-        gap: 10px 15px !important; /* Espacio: 10px vertical, 15px horizontal */
-        line-height: 2 !important; /* Separa las líneas para que no se peguen */
-        padding: 0 20px !important; /* Margen lateral para que no toquen los bordes */
+        gap: 10px 15px !important; 
+        line-height: 2 !important; 
+        padding: 0 20px !important; 
         width: 100%;
     }
     
-    /* Opcional: Ajustar un poco el tamaño de la fuente si se ve muy grande */
     .redes-sociales a {
         font-size: 14px !important;
-        white-space: nowrap; /* Evita que se parta el nombre "LaTostadora" por la mitad */
+        white-space: nowrap; 
     }
 
     /* Layouts */
@@ -622,9 +621,9 @@ body.modo-contraste .label-promo {
     width: 100% !important;
     display: flex !important;
     flex-direction: column !important;
-    padding: 40px 25px !important; /* Espacio para que el texto respire */
-    background-color: #f6f5f4 !important; /* El gris Cloud Dancer */
-    text-align: center !important; /* Texto centrado en móvil */
+    padding: 40px 25px !important; 
+    background-color: #f6f5f4 !important; 
+    text-align: center !important; 
     box-sizing: border-box !important;
 }
 
@@ -748,17 +747,17 @@ body.modo-contraste .nav-links li a.active-link {
 
 /* --- CORRECCIÓN FLASH FOTO RANDOM --- */
 #foto-perfil-azar {
-    opacity: 0; /* Nace invisible */
-    transition: opacity 0.2s ease-in; /* (Opcional) Hace que aparezca suavemente */
+    opacity: 0; 
+    transition: opacity 0.2s ease-in; 
 }
 
 #foto-perfil-azar.visible {
-    opacity: 1; /* Se vuelve visible cuando tiene esta clase */
+    opacity: 1; 
 }
 
 
 /* ==========================================================================
-   BANNER LIBRO - VERSIÓN PC (SIN BORDES ARRIBA + PEGADO A LO BRUTO)
+   BANNER LIBRO - VERSIÓN PC
    ========================================================================== */
 
 .promo-libro-container {
@@ -766,35 +765,26 @@ body.modo-contraste .nav-links li a.active-link {
     position: relative;
     width: 100%;
     max-width: 950px;
-    
-    /* FUERZA BRUTA PARA SUBIRLO */
-    /* Si te parece mucho, baja a -100px. Si es poco, sube a -150px */
     margin-top: -100px !important; 
     margin-right: auto;
     margin-left: auto;
     margin-bottom: 60px;
-    
-    /* CRUCIAL: Todo transparente para que no se vea caja arriba */
     background-color: transparent !important;
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
-    
-    /* Para que flote sobre la sección anterior */
     z-index: 99; 
 }
 
-/* --- EL SUELO GRIS (SOLO ESTO DEBE TENER COLOR) --- */
 .promo-libro-container::before {
     content: "";
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 60%; /* Altura de la zona gris */
+    height: 60%; 
     background-color: #f6f5f4; 
     border-radius: 12px;
-    /* La sombra solo va en el suelo gris */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     z-index: -1; 
 }
@@ -808,8 +798,6 @@ body.modo-contraste .nav-links li a.active-link {
     justify-content: center;
     position: relative;
     z-index: 1;
-    
-    /* IMPORTANTE: Fondo transparente para no crear el cuadrado blanco */
     background-color: transparent !important; 
 }
 
@@ -819,39 +807,31 @@ body.modo-contraste .nav-links li a.active-link {
     height: auto;
     display: block;
     margin-bottom: 0;
-    /* mix-blend-mode: multiply; <--- Quitado para evitar problemas con bordes */
 }
 
 /* --- COLUMNA TEXTO --- */
 .libro-texto-wrapper {
     flex: 1;
-    /* Bajamos el padding superior para que el texto caiga en la zona gris */
     padding: 100px 40px 40px 20px; 
     display: flex;
     flex-direction: column;
     justify-content: center;
     position: relative;
     z-index: 1;
-    
-    /* IMPORTANTE: Quitamos el degradado blanco que creaba el borde */
     background: transparent !important;
 }
 
 /* Estilos Texto */
 .label-promo {
-    /* Tipografía */
     font-size: 10px; 
     font-weight: 900; 
     letter-spacing: 1px; 
     text-transform: uppercase; 
-    
-    /* Estilo Etiqueta (Fondo Negro / Letra Blanca) */
     background-color: #000;
     color: #fff;
-    padding: 5px 10px; /* Relleno para que respire */
-    border-radius: 4px; /* Bordes un pelín redondeados */
-    width: fit-content; /* IMPORTANTE: Para que el fondo no ocupe todo el ancho */
-    
+    padding: 5px 10px; 
+    border-radius: 4px; 
+    width: fit-content; 
     margin-bottom: 15px; 
     display: block;
 }
@@ -873,8 +853,8 @@ body.modo-contraste .nav-links li a.active-link {
 /* --- MODO NOCHE PC --- */
 body.modo-contraste .promo-libro-container { background-color: transparent !important; }
 body.modo-contraste .promo-libro-container::before { background-color: #1a1a1a; border: 1px solid #333; }
-body.modo-contraste .libro-img-wrapper { background-color: transparent !important; } /* Transparente también en noche */
-body.modo-contraste .libro-texto-wrapper { background: transparent !important; } /* Transparente también en noche */
+body.modo-contraste .libro-img-wrapper { background-color: transparent !important; } 
+body.modo-contraste .libro-texto-wrapper { background: transparent !important; } 
 
 body.modo-contraste .libro-foto-principal { filter: brightness(0.9); }
 body.modo-contraste .libro-texto-wrapper h3, body.modo-contraste .libro-texto-wrapper p { color: #fff; }
@@ -885,7 +865,7 @@ body.modo-contraste .btn-compra-libro { background-color: #fff; color: #000 !imp
    MODO NOCHE (PREPARADO PARA CAMBIO DE FOTO)
    ========================================================================== */
 body.modo-contraste .promo-libro-container::before {
-    background-color: #1a1a1a; /* Suelo oscuro */
+    background-color: #1a1a1a; 
     border: 1px solid #333;
 }
 
@@ -899,47 +879,38 @@ body.modo-contraste .btn-compra-libro {
     color: #000 !important;
 }
 
-/* AQUÍ CONFIGURAS LA FOTO DE NOCHE */
 body.modo-contraste .libro-foto-principal {
-    mix-blend-mode: normal; /* Quitamos el efecto multiply en noche */
-    
-    /* OPCIÓN A: Si es la misma foto, le bajamos el brillo */
+    mix-blend-mode: normal; 
     filter: brightness(0.8); 
-
-    /* OPCIÓN B: Si tienes una foto distinta para noche (ej: libro con luz led), descomenta esto: */
-    /* content: url('img/nombre-de-tu-foto-noche.jpg'); */
 }
 
-/* Dentro de tus estilos de Modo Noche */
 body.modo-contraste .label-promo {
-    background-color: #fff !important; /* Fondo blanco */
-    color: #000 !important;            /* Letra negra */
-    opacity: 1;                        /* Quitamos la opacidad si la tenía antes */
+    background-color: #fff !important; 
+    color: #000 !important;            
+    opacity: 1;                        
 }
 
 /* ==========================================================================
-   BANNER TIENDA - VERSIÓN TODO DENTRO (SIN ELEMENTOS FUERA)
+   BANNER TIENDA - VERSIÓN TODO DENTRO
    ========================================================================== */
 
 .promo-tienda-container {
     display: flex !important;
-    flex-direction: row-reverse !important; /* Foto derecha, Texto izquierda */
+    flex-direction: row-reverse !important; 
     width: 100%;
     max-width: 950px;
-    margin: 40px auto; /* Margen normal, sin negativos para que no suba */
-    
-    /* Fondo sólido Cloud Dancer para que todo esté "dentro" */
+    margin: 40px auto; 
     background-color: #f6f5f4 !important; 
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    overflow: hidden; /* Corta cualquier cosa que intente salir */
+    overflow: hidden; 
 }
 
 /* --- COLUMNA FOTO --- */
 .tienda-img-wrapper {
     flex: 0 0 45%;
     display: flex;
-    align-items: center; /* Centrada verticalmente para que no asome */
+    align-items: center; 
     justify-content: center;
     background-color: #f6f5f4;
     padding: 20px !important;
@@ -947,7 +918,7 @@ body.modo-contraste .label-promo {
 
 .tienda-foto-principal {
     width: auto;
-    max-width: 550px; /* Foto un poco más pequeña que la del libro */
+    max-width: 550px; 
     height: auto;
     display: block;
 }
@@ -959,12 +930,12 @@ body.modo-contraste .label-promo {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    text-align: left; /* O right si prefieres simetría */
+    text-align: left; 
 }
 
 /* --- TÍTULO MÁS PEQUEÑO --- */
 .titulo-tienda {
-    font-size: 1.6rem !important; /* <--- Ajuste de tamaño solicitado */
+    font-size: 1.6rem !important; 
     line-height: 1.2;
     margin-bottom: 15px;
     color: #000;
@@ -1000,38 +971,6 @@ body.modo-contraste .titulo-tienda,
 body.modo-contraste .tienda-texto-wrapper p { color: #fff; }
 body.modo-contraste .btn-compra-tienda { background-color: #fff; color: #000 !important; }
 
-
-/* ==========================================================================
-   MODO NOCHE (PREPARADO PARA CAMBIO DE FOTO)
-   ========================================================================== */
-body.modo-contraste .promo-libro-container::before {
-    background-color: #1a1a1a; /* Suelo oscuro */
-    border: 1px solid #333;
-}
-
-body.modo-contraste .libro-texto-wrapper h3,
-body.modo-contraste .libro-texto-wrapper p {
-    color: #fff;
-}
-
-body.modo-contraste .btn-compra-libro {
-    background-color: #fff;
-    color: #000 !important;
-}
-
-/* AQUÍ CONFIGURAS LA FOTO DE NOCHE */
-body.modo-contraste .libro-foto-principal {
-    mix-blend-mode: normal; /* Quitamos el efecto multiply en noche */
-    
-    /* OPCIÓN A: Si es la misma foto, le bajamos el brillo */
-    filter: brightness(0.8); 
-
-    /* OPCIÓN B: Si tienes una foto distinta para noche (ej: libro con luz led), descomenta esto: */
-    /* content: url('img/nombre-de-tu-foto-noche.jpg'); */
-}
-/* ==========================================================================
-   VERSIÓN MÓVIL CORREGIDA (SOMBRA + FOTO AJUSTADA)
-   ========================================================================== */
 /* ==========================================================================
    VERSIÓN MÓVIL (IMAGEN 100% ANCHO BORDE A BORDE)
    ========================================================================== */
@@ -1073,7 +1012,6 @@ body.modo-contraste .libro-foto-principal {
     .libro-img-wrapper {
         width: 100%;
         background-color: #fff;
-        /* Reducimos un poco el aire de arriba para que la foto destaque más */
         padding-top: 30px; 
         padding-bottom: 0;
         padding-left: 0;
@@ -1084,14 +1022,13 @@ body.modo-contraste .libro-foto-principal {
     }
 
     .libro-foto-principal {
-        /* AQUÍ ESTÁ EL CAMBIO CLAVE */
-        width: 100% !important;  /* Ocupa todo el ancho disponible */
-        max-width: 100% !important; /* Quitamos el límite de 250px */
+        width: 100% !important;  
+        max-width: 100% !important; 
         height: auto;
         display: block;
         mix-blend-mode: normal; 
-        margin-bottom: -1px; /* Para asegurar que no haya línea blanca abajo */
-        object-fit: cover; /* Asegura que rellene bien */
+        margin-bottom: -1px; 
+        object-fit: cover; 
     }
 
     /* 4. Texto */
@@ -1100,7 +1037,7 @@ body.modo-contraste .libro-foto-principal {
         background-color: #f6f5f4;
         padding: 30px 20px;
         text-align: center;
-        border-top: none; /* Quitamos borde para que parezca continuo */
+        border-top: none; 
     }
 
     .libro-texto-wrapper h3 {
@@ -1126,29 +1063,26 @@ body.modo-contraste .libro-foto-principal {
    ========================================================================== */
 @media (max-width: 768px) {
 
-    /* 1. Forzamos que el contenedor crezca y no oculte nada */
     .promo-tienda-container {
         display: flex !important;
-        flex-direction: column !important; /* Foto arriba, Texto abajo */
+        flex-direction: column !important; 
         height: auto !important;
-        min-height: 500px !important; /* Altura mínima para asegurar que cabe todo */
+        min-height: 500px !important; 
         overflow: visible !important;
         background-color: #fff !important;
         margin-top: 40px !important;
     }
 
-    /* 2. Aseguramos que el bloque de texto sea visible y tenga fondo gris */
     .tienda-texto-wrapper {
-        display: block !important; /* O flex, pero block asegura que ocupa espacio */
+        display: block !important; 
         width: 100% !important;
-        background-color: #f6f5f4 !important; /* Fondo Gris Cloud Dancer */
+        background-color: #f6f5f4 !important; 
         padding: 40px 20px !important;
         opacity: 1 !important;
         position: relative !important;
         z-index: 10 !important;
     }
 
-    /* 3. CORRECCIÓN CLAVE: Apuntamos al h3 directo (porque no tiene la clase .titulo-tienda en el HTML) */
     .tienda-texto-wrapper h3 {
         display: block !important;
         font-size: 1.6rem !important;
@@ -1158,7 +1092,6 @@ body.modo-contraste .libro-foto-principal {
         line-height: 1.2 !important;
     }
 
-    /* 4. Texto de los párrafos */
     .tienda-texto-wrapper p {
         display: block !important;
         font-size: 1rem !important;
@@ -1166,14 +1099,12 @@ body.modo-contraste .libro-foto-principal {
         margin-bottom: 20px !important;
     }
     
-    /* 5. Aseguramos que la foto se quede arriba */
     .tienda-img-wrapper {
-        order: -1 !important; /* Manda la foto al principio */
+        order: -1 !important; 
         width: 100% !important;
         padding-bottom: 0 !important;
     }
 
-    /* 6. Arreglo para Modo Noche Móvil (para que se lea el texto) */
     body.modo-contraste .tienda-texto-wrapper {
         background-color: #1a1a1a !important;
     }
@@ -1181,4 +1112,64 @@ body.modo-contraste .libro-foto-principal {
     body.modo-contraste .tienda-texto-wrapper p {
         color: #ffffff !important;
     }
+}
+
+/* ==========================================================================
+   11. EASTER EGG Y DEBUG
+   ========================================================================== */
+.modal-secreto {
+    display: none; 
+    position: fixed; z-index: 200000; left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.85); 
+    backdrop-filter: blur(5px);
+    align-items: center; justify-content: center;
+}
+
+/* Cuando se activa con JS */
+.modal-secreto.activo { display: flex !important; animation: fadeIn 0.3s ease; }
+
+.modal-secreto-content {
+    background-color: #1e1e1e; 
+    color: #d4d4d4;
+    width: 90%; max-width: 800px; max-height: 85vh;
+    padding: 40px; border-radius: 8px;
+    border: 1px solid #333;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    overflow-y: auto; 
+    font-family: 'Consolas', 'Courier New', monospace;
+    position: relative;
+}
+
+/* Botón cerrar */
+.cerrar-secreto {
+    position: absolute; top: 15px; right: 20px;
+    color: #ff5f56; font-size: 40px; font-weight: bold;
+    cursor: pointer; transition: 0.2s;
+}
+.cerrar-secreto:hover { color: #fff; }
+
+/* Títulos */
+.modal-secreto h2 { color: #4ec9b0; margin-bottom: 20px; font-size: 1.8rem; border-bottom: 1px solid #333; padding-bottom: 10px; }
+.secreto-item h3 { color: #ce9178; margin-top: 30px; font-size: 1.2rem; }
+.intro-secreto { color: #9cdcfe; margin-bottom: 20px; font-style: italic; }
+
+/* Bloques de código */
+.secreto-item pre {
+    background: #000; padding: 15px; border-radius: 6px;
+    border-left: 4px solid #BB2649;
+    overflow-x: auto; margin-top: 10px;
+}
+.secreto-item code {
+    font-family: 'Consolas', monospace; color: #b5cea8; font-size: 0.9rem;
+}
+
+/* El gatillo (Trigger) */
+.trigger-easter-egg { cursor: help; transition: 0.3s; }
+.trigger-easter-egg:hover { text-shadow: 0 0 5px #BB2649; transform: scale(1.05); }
+
+/* --- DEBUG MODE (RAYOS X) --- */
+body.debug-activo * {
+    outline: 1px solid rgba(255, 0, 0, 0.5) !important;
+    background-color: rgba(255, 0, 0, 0.05) !important;
 }
