@@ -84,6 +84,18 @@ const variantes = [
         foto: "fotos/foto12.webp", 
         prompt: "Full-body B&W studio portrait of a bearded man on a stool, suit jacket, barefoot. Overlaid with neon yellow hand-drawn crown and body outlines." 
     },
+    {
+        foto: "fotos/foto13.webp", 
+        prompt: "Man in grey suit and neon glasses standing on a stack of retro CRT TVs showing his face, surreal studio photography, glitch art aesthetic, cinematic." 
+    } ,
+        {
+        foto: "fotos/foto14.webp", 
+        prompt: "Extreme close-up profile of a man with eyes closed, cinematic deep blue lighting with a sharp cinematic light beam across the face, moody atmosphere." 
+    }, 
+            {
+        foto: "fotos/foto15.webp", 
+        prompt: "Man drawing on tablet in a cozy lo-fi room with fairy lights, Nintendo Switch, Star lamp, and pop culture decor, warm ambient lighting, lifestyle photography." 
+    },
     /*
         {
         foto: "fotos/foto6.webp", 
