@@ -264,11 +264,24 @@ body.modo-contraste .banner-pc.banner-bn {
 /* ==========================================================================
    6. PORTAFOLIO Y GALERÍA (LIGHTBOX)
    ========================================================================== */
-.proyectos-grid { display: flex; gap: 20px; margin-top: 30px; }
+.proyectos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Fuerza 3 columnas iguales */
+    gap: 20px;
+    margin-top: 30px;
+}
 .tarjeta-proyecto {
-    flex: 1; padding: 25px; background: #fff; border: 1px solid #ccc;
-    border-radius: 8px; border-top: 5px solid #BB2649;
+    /* Quitamos el flex:1 antiguo */
+    width: 100%;
+    padding: 25px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    border-top: 5px solid #BB2649;
     transition: transform 0.3s;
+    display: flex;             /* Para alinear contenido interno */
+    flex-direction: column;    /* Texto arriba, botón abajo */
+    justify-content: space-between;
 }
 .tarjeta-proyecto:hover { transform: translateY(-8px); }
 
@@ -1221,4 +1234,50 @@ body.modo-contraste .titulo-certificaciones {
 }
 body.modo-contraste .area-certificaciones {
     border-top-color: #555;
+}
+
+/* --- ESTILOS ENLACE GITHUB PROYECTOS --- */
+.enlace-github {
+    color: #BB2649; 
+    font-weight: 800; 
+    text-decoration: none !important; /* Sin subrayado estándar */
+    border: none !important;          /* Sin borde inferior */
+    align-self: flex-start;
+    transition: all 0.3s ease;
+}
+
+.enlace-github:hover {
+    color: #000;       /* Al pasar el ratón se pone negro */
+    background: none;  /* Quitamos fondo si lo hubiera */
+}
+
+/* MODO NOCHE */
+body.modo-contraste .enlace-github {
+    color: #ffffff !important;
+}
+
+body.modo-contraste .enlace-github:hover {
+    color: #BB2649 !important; /* Pequeño toque de color al pasar el ratón en noche */
+}
+
+/* --- ENLACES DE TEXTO EXPERIENCIA (LIMPIO) --- */
+.enlace-texto-destacado {
+    text-decoration: none !important; /* ¡ADIÓS LÍNEA! */
+    border: none !important;
+    color: #FF7F50; 
+    font-weight: 800; /* Un poco más gordito para que se note que es link */
+    transition: color 0.3s ease;
+}
+
+.enlace-texto-destacado:hover {
+    color: #333; 
+}
+
+/* MODO NOCHE */
+body.modo-contraste .enlace-texto-destacado {
+    color: #ffffff !important;
+}
+
+body.modo-contraste .enlace-texto-destacado:hover {
+    color: #FF7F50 !important; /* Toque naranja al pasar el ratón */
 }
